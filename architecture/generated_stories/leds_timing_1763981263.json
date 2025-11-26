@@ -1,0 +1,154 @@
+{
+  "audio_led_sync": [
+    {
+      "start_time": 0.0,
+      "end_time": 9.415,
+      "pattern": "breathe_slow",
+      "color": {
+        "r": 0,
+        "g": 255,
+        "b": 0
+      }
+    },
+    {
+      "start_time": 9.415,
+      "end_time": 11.406,
+      "pattern": "sparkle",
+      "color": {
+        "r": 255,
+        "g": 255,
+        "b": 0
+      }
+    },
+    {
+      "start_time": 11.468,
+      "end_time": 14.099,
+      "pattern": "cycle",
+      "color": {
+        "r": 0,
+        "g": 255,
+        "b": 0
+      }
+    },
+    {
+      "start_time": 14.099,
+      "end_time": 19.495,
+      "pattern": "sparkle",
+      "color": {
+        "r": 128,
+        "g": 0,
+        "b": 128
+      }
+    },
+    {
+      "start_time": 20.077,
+      "end_time": 23.586,
+      "pattern": "breathe_slow",
+      "color": {
+        "r": 128,
+        "g": 0,
+        "b": 128
+      }
+    },
+    {
+      "start_time": 23.667,
+      "end_time": 27.971,
+      "pattern": "breathe_slow",
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 255
+      }
+    },
+    {
+      "start_time": 28.851,
+      "end_time": 32.444,
+      "pattern": "sparkle",
+      "color": {
+        "r": 255,
+        "g": 255,
+        "b": 0
+      }
+    },
+    {
+      "start_time": 32.496,
+      "end_time": 35.364,
+      "pattern": "fill",
+      "color": {
+        "r": 128,
+        "g": 0,
+        "b": 128
+      }
+    },
+    {
+      "start_time": 35.364,
+      "end_time": 39.354,
+      "pattern": "flash",
+      "color": {
+        "r": 128,
+        "g": 0,
+        "b": 128
+      }
+    },
+    {
+      "start_time": 39.609,
+      "end_time": 41.269,
+      "pattern": "breathe_fast",
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 255
+      }
+    },
+    {
+      "start_time": 41.326,
+      "end_time": 47.514,
+      "pattern": "cornerblast",
+      "color": {
+        "r": 0,
+        "g": 255,
+        "b": 255
+      }
+    },
+    {
+      "start_time": 47.922,
+      "end_time": 50.895,
+      "pattern": "breathe_slow",
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 255
+      }
+    },
+    {
+      "start_time": 50.895,
+      "end_time": 52.013,
+      "pattern": "breathe_slow",
+      "color": {
+        "r": 0,
+        "g": 255,
+        "b": 0
+      }
+    },
+    {
+      "start_time": 52.013,
+      "end_time": 53.453,
+      "pattern": "breathe_slow",
+      "color": {
+        "r": 255,
+        "g": 255,
+        "b": 0
+      }
+    },
+    {
+      "start_time": 53.453,
+      "end_time": 57.522,
+      "pattern": "cycle",
+      "color": {
+        "r": 0,
+        "g": 255,
+        "b": 0
+      }
+    }
+  ]
+}

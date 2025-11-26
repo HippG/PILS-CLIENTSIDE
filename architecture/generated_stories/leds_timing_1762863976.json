@@ -1,0 +1,50 @@
+{
+  "audio_led_sync": [
+    {
+      "start_time": 0.0,
+      "end_time": 15.31,
+      "pattern": "sparkle",
+      "color": { "r": 0, "g": 0, "b": 255 }
+    },
+    {
+      "start_time": 15.31,
+      "end_time": 30.62,
+      "pattern": "fill",
+      "color": { "r": 0, "g": 255, "b": 0 }
+    },
+    {
+      "start_time": 30.62,
+      "end_time": 45.93,
+      "pattern": "breathe_slow",
+      "color": { "r": 0, "g": 255, "b": 255 }
+    },
+    {
+      "start_time": 45.93,
+      "end_time": 61.24,
+      "pattern": "breathe_fast",
+      "color": { "r": 128, "g": 0, "b": 128 }
+    },
+    {
+      "start_time": 61.24,
+      "end_time": 76.55,
+      "pattern": "fire"
+    },
+    {
+      "start_time": 76.55,
+      "end_time": 91.86,
+      "pattern": "cornerblast",
+      "color": { "r": 255, "g": 80, "b": 0 }
+    },
+    {
+      "start_time": 91.86,
+      "end_time": 107.17,
+      "pattern": "rain"
+    },
+    {
+      "start_time": 107.17,
+      "end_time": 122.44,
+      "pattern": "flash",
+      "color": { "r": 255, "g": 255, "b": 255 }
+    }
+  ]
+}

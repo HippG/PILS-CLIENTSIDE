@@ -1,0 +1,134 @@
+{
+  "audio_led_sync": [
+    {
+      "start_time": 0.16,
+      "end_time": 16.872,
+      "pattern": "breathe_slow",
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 255
+      }
+    },
+    {
+      "start_time": 16.872,
+      "end_time": 22.565,
+      "pattern": "breathe_fast",
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 255
+      }
+    },
+    {
+      "start_time": 22.565,
+      "end_time": 24.558,
+      "pattern": "breathe_fast",
+      "color": {
+        "r": 128,
+        "g": 0,
+        "b": 128
+      }
+    },
+    {
+      "start_time": 24.894,
+      "end_time": 28.355,
+      "pattern": "breathe_fast",
+      "color": {
+        "r": 0,
+        "g": 255,
+        "b": 0
+      }
+    },
+    {
+      "start_time": 28.355,
+      "end_time": 35.274,
+      "pattern": "breathe_slow",
+      "color": {
+        "r": 0,
+        "g": 255,
+        "b": 0
+      }
+    },
+    {
+      "start_time": 36.126,
+      "end_time": 40.2,
+      "pattern": "cycle",
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 255
+      }
+    },
+    {
+      "start_time": 40.892,
+      "end_time": 43.379,
+      "pattern": "breathe_fast",
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 255
+      }
+    },
+    {
+      "start_time": 43.379,
+      "end_time": 46.168,
+      "pattern": "flash",
+      "color": {
+        "r": 255,
+        "g": 165,
+        "b": 0
+      }
+    },
+    {
+      "start_time": 46.168,
+      "end_time": 48.788,
+      "pattern": "sparkle",
+      "color": {
+        "r": 128,
+        "g": 0,
+        "b": 128
+      }
+    },
+    {
+      "start_time": 48.788,
+      "end_time": 51.264,
+      "pattern": "fill",
+      "color": {
+        "r": 255,
+        "g": 255,
+        "b": 255
+      }
+    },
+    {
+      "start_time": 51.801,
+      "end_time": 53.025,
+      "pattern": "sparkle",
+      "color": {
+        "r": 255,
+        "g": 255,
+        "b": 0
+      }
+    },
+    {
+      "start_time": 53.025,
+      "end_time": 56.141,
+      "pattern": "cornerblast",
+      "color": {
+        "r": 255,
+        "g": 0,
+        "b": 80
+      }
+    },
+    {
+      "start_time": 56.141,
+      "end_time": 61.327,
+      "pattern": "cycle",
+      "color": {
+        "r": 255,
+        "g": 255,
+        "b": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "audio_led_sync": [
+    {
+      "start_time": 0.126,
+      "end_time": 11.17,
+      "pattern": "breathe_slow",
+      "color": {
+        "r": 0,
+        "g": 255,
+        "b": 0
+      }
+    },
+    {
+      "start_time": 11.17,
+      "end_time": 19.727,
+      "pattern": "sparkle",
+      "color": {
+        "r": 128,
+        "g": 0,
+        "b": 128
+      }
+    },
+    {
+      "start_time": 19.727,
+      "end_time": 22.123,
+      "pattern": "breathe_fast",
+      "color": {
+        "r": 128,
+        "g": 0,
+        "b": 128
+      }
+    },
+    {
+      "start_time": 22.33,
+      "end_time": 29.587,
+      "pattern": "cycle",
+      "color": {
+        "r": 0,
+        "g": 255,
+        "b": 0
+      }
+    },
+    {
+      "start_time": 29.587,
+      "end_time": 33.58,
+      "pattern": "sparkle",
+      "color": {
+        "r": 128,
+        "g": 0,
+        "b": 128
+      }
+    },
+    {
+      "start_time": 33.58,
+      "end_time": 37.968,
+      "pattern": "flash",
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 255
+      }
+    },
+    {
+      "start_time": 38.19,
+      "end_time": 40.764,
+      "pattern": "breathe_fast",
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 255
+      }
+    },
+    {
+      "start_time": 41.229,
+      "end_time": 44.264,
+      "pattern": "cornerblast",
+      "color": {
+        "r": 0,
+        "g": 255,
+        "b": 255
+      }
+    },
+    {
+      "start_time": 44.264,
+      "end_time": 49.746,
+      "pattern": "sparkle",
+      "color": {
+        "r": 255,
+        "g": 255,
+        "b": 0
+      }
+    },
+    {
+      "start_time": 50.272,
+      "end_time": 51.366,
+      "pattern": "flash",
+      "color": {
+        "r": 255,
+        "g": 255,
+        "b": 0
+      }
+    },
+    {
+      "start_time": 51.366,
+      "end_time": 54.748,
+      "pattern": "cycle",
+      "color": {
+        "r": 255,
+        "g": 255,
+        "b": 0
+      }
+    },
+    {
+      "start_time": 54.875,
+      "end_time": 59.744,
+      "pattern": "sparkle",
+      "color": {
+        "r": 255,
+        "g": 255,
+        "b": 0
+      }
+    }
+  ]
+}

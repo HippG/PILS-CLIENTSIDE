@@ -1,0 +1,134 @@
+{
+  "audio_led_sync": [
+    {
+      "start_time": 0.479,
+      "end_time": 9.171,
+      "pattern": "breathe_slow",
+      "color": {
+        "r": 0,
+        "g": 255,
+        "b": 0
+      }
+    },
+    {
+      "start_time": 9.171,
+      "end_time": 16.399,
+      "pattern": "breathe_slow",
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 255
+      }
+    },
+    {
+      "start_time": 16.746,
+      "end_time": 23.701,
+      "pattern": "fill",
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 255
+      }
+    },
+    {
+      "start_time": 23.797,
+      "end_time": 27.788,
+      "pattern": "sparkle",
+      "color": {
+        "r": 0,
+        "g": 255,
+        "b": 0
+      }
+    },
+    {
+      "start_time": 27.984,
+      "end_time": 29.914,
+      "pattern": "breathe_slow",
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 255
+      }
+    },
+    {
+      "start_time": 29.914,
+      "end_time": 32.985,
+      "pattern": "breathe_slow",
+      "color": {
+        "r": 0,
+        "g": 255,
+        "b": 0
+      }
+    },
+    {
+      "start_time": 33.914,
+      "end_time": 36.124,
+      "pattern": "cycle",
+      "color": {
+        "r": 0,
+        "g": 255,
+        "b": 0
+      }
+    },
+    {
+      "start_time": 36.124,
+      "end_time": 42.513,
+      "pattern": "flash",
+      "color": {
+        "r": 128,
+        "g": 0,
+        "b": 128
+      }
+    },
+    {
+      "start_time": 42.553,
+      "end_time": 45.669,
+      "pattern": "fill",
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 255
+      }
+    },
+    {
+      "start_time": 46.447,
+      "end_time": 50.66,
+      "pattern": "breathe_slow",
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 255
+      }
+    },
+    {
+      "start_time": 51.32,
+      "end_time": 55.092,
+      "pattern": "cornerblast",
+      "color": {
+        "r": 0,
+        "g": 255,
+        "b": 255
+      }
+    },
+    {
+      "start_time": 55.092,
+      "end_time": 57.765,
+      "pattern": "breathe_slow",
+      "color": {
+        "r": 0,
+        "g": 255,
+        "b": 0
+      }
+    },
+    {
+      "start_time": 57.765,
+      "end_time": 60.759,
+      "pattern": "fill",
+      "color": {
+        "r": 0,
+        "g": 255,
+        "b": 0
+      }
+    }
+  ]
+}

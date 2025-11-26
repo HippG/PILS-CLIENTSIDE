@@ -1,0 +1,64 @@
+{
+  "audio_led_sync": [
+    {
+      "start_time": 0.0,
+      "end_time": 3.229,
+      "pattern": "breathe_slow",
+      "color": {
+        "r": 0,
+        "g": 255,
+        "b": 0
+      }
+    },
+    {
+      "start_time": 3.229,
+      "end_time": 5.184,
+      "pattern": "sparkle",
+      "color": {
+        "r": 128,
+        "g": 0,
+        "b": 128
+      }
+    },
+    {
+      "start_time": 5.184,
+      "end_time": 6.097,
+      "pattern": "breathe_slow",
+      "color": {
+        "r": 128,
+        "g": 0,
+        "b": 128
+      }
+    },
+    {
+      "start_time": 6.097,
+      "end_time": 7.12,
+      "pattern": "flash",
+      "color": {
+        "r": 255,
+        "g": 165,
+        "b": 0
+      }
+    },
+    {
+      "start_time": 7.12,
+      "end_time": 7.81,
+      "pattern": "cornerblast",
+      "color": {
+        "r": 255,
+        "g": 255,
+        "b": 0
+      }
+    },
+    {
+      "start_time": 7.81,
+      "end_time": 9.67,
+      "pattern": "flash",
+      "color": {
+        "r": 255,
+        "g": 0,
+        "b": 80
+      }
+    }
+  ]
+}
