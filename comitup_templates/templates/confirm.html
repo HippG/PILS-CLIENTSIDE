@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr" class="uk-height-1-1">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Comitup</title>
+    <link rel="icon" href="img/favicon.ico">
+    <!-- CSS FILES -->
+    <link rel="stylesheet" type="text/css" href="css/uikit.css">
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
+</head>
+<body class="uk-height-1-1">
+<div class="uk-flex uk-flex-center uk-flex-middle">
+    <div class="uk-width-large uk-padding-small rounded-surface">
+        <div class="uk-width-1-1 uk-text-center">
+            <img src="img/milo.png" alt="Logo" class="logo">
+            <p class="uk-text-large page-title">Se connecter au Wi‑Fi</p>
+        </div>
+
+        <div class="uk-margin">
+            <div class="uk-width-1-1">
+                <p>
+                    Appuyez sur le bouton Se connecter pour connecter cet appareil à {{ ssid }}. <br><br>
+
+                    {% if mode == 'single' %}
+                    Cela mettra fin au point d’accès actuel. Connectez-vous à {{ ssid }}.local pour y accéder.<br><br>
+
+                    Si la connexion échoue, ce point d’accès sera recréé.<br><br>
+                    {% else %}
+                    Le point d’accès restera actif, mais ce service web sera arrêté.<br><br>
+
+                    Si la connexion échoue, le service web sera restauré.<br><br>
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+        <form action="/connect" method="POST">
+            <div class="uk-grid uk-grid-small">
+                <div class="uk-width-2-3">
+                    <input type="hidden" name="ssid" value="{{ ssid_encoded }}">
+                    <input class="uk-input" placeholder="Mot de passe (si nécessaire)" type="password" name="password">
+                </div>
+                <div class="uk-width-1-3">
+                    <button type="submit" value="Connect" class="uk-button uk-button-primary uk-width-expand action-btn">Se connecter</button>
+                </div>
+            </div>
+        </form>
+            <!-- Locate feature removed -->
+    </div>
+</div>
+
+<!-- JS FILES -->
+<script src="js/uikit"></script>
+<script src="js/uikit-icons"></script>

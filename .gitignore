@@ -1,0 +1,70 @@
+####################################
+# Python (général)
+####################################
+__pycache__/
+*.py[cod]
+*$py.class
+
+####################################
+# Environnements virtuels
+####################################
+venv/
+.env/
+.envrc/
+
+####################################
+# Fichiers générés / runtime
+####################################
+*.log
+*.pid
+*.lock
+
+####################################
+# Fichiers temporaires / OS
+####################################
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+####################################
+# IDE / éditeurs
+####################################
+.vscode/
+.idea/
+*.swp
+*.swo
+
+####################################
+# Génération PILS (stories, audio, leds)
+####################################
+architecture/generated_stories/
+*.mp3
+*.wav
+*.ogg
+*.json
+
+####################################
+# ComiTup custom (si généré / modifié localement)
+####################################
+comitup_templates/__pycache__/
+
+####################################
+# Services Linux déployés sur la machine
+####################################
+linux_services/*.service
+linux_services/*.timer
+
+####################################
+# Sécurité / local only
+####################################
+todo.txt
+*.secret
+*.key
+
+####################################
+# Tests / caches divers
+####################################
+.cache/
+pytest_cache/
+.mypy_cache/

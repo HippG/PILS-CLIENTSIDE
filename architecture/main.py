@@ -19,7 +19,7 @@ from hardware.audio_output import AudioOutput
 from hardware.leds import LedDriver
 from hardware.rfid_reader import RFIDReaderManager
 from hardware.rotary_encoder import RotaryEncoder
-from hardware.buttons import StopButton
+from hardware.buttons import PlayPauseButton
 from hardware.selector import DurationSelector
 
 from services.audio_player import AudioPlayer
@@ -251,52 +251,43 @@ class StoryBoxController:
         self.audio_output.set_volume(new_volume)
 
     def on_rotary_click(self):
-        print(f"[Controller] Rotary click received in state={self.state.name}")
-        self.led_controller.led_event(
-            InstantFlashPattern,
-            color=(0,0,255),
-            duration=1.0,
-        )
+        print(f"[Controller] Rotary click received but UNUSED in this version.")
+        # User requested to disable rotary button click functionality.
+        pass
+
+    def on_play_pause_click(self):
+        print(f"[Controller] Play/Pause button clicked in state={self.state.name}")
+        self.led_controller.led_event(InstantFlashPattern, color=(255, 0, 0), duration=1.0)
+
         if self.state == StoryBoxState.PREPARING_STORY:
             self.request_story()
+        
         elif self.state == StoryBoxState.PLAYING_STORY:
-            self.pause_story()
-        elif self.state == StoryBoxState.PAUSED or self.state == StoryBoxState.CONFIRM_STOP:
+            # "PAUSE state doesnt exist anymore, we directly play the stop_story audio"
+            # Pause actual audio playback
+            self.audio_player.pause_story()
+            # Go directly to CONFIRM_STOP
+            self._set_state(StoryBoxState.CONFIRM_STOP)
+            self._play_system_prompt("system", "stop_story")
+            self.led_controller.led_event(BreatheSlowPattern, color=(255, 0, 0))
+            print("[Controller] Story paused -> Confirm Stop state.")
+
+        elif self.state == StoryBoxState.CONFIRM_STOP:
+            # Resume story
             self.resume_story()
 
         else:
-            print("[Controller] Rotary click ignored in this state.")
+            print("[Controller] Play/Pause click ignored in this state.")
 
-    def on_stop_button(self):
-        print(f"[Controller] Stop button pressed in state={self.state.name}")
-
+    def on_play_pause_long_press(self):
+        print(f"[Controller] Play/Pause button LONG PRESSED in state={self.state.name}")
         
-        self.led_controller.led_event(
-            InstantFlashPattern,
-            color=(255, 0, 0),
-            duration=1.0,
-        )
-        if self.state in (StoryBoxState.PLAYING_STORY, StoryBoxState.PAUSED):
-            if not self._pending_stop_confirm:
-                self._pending_stop_confirm = True
-                self.pause_story()
-                self._set_state(StoryBoxState.CONFIRM_STOP)
-                self._play_system_prompt("system", "stop_story")
-                self.led_controller.led_event(
-                    BreatheSlowPattern,
-                    color=(255, 0, 0),
-                )
-                print("[Controller] Asking for confirmation to stop story. Press stop again to confirm.")
-            else:
-                print("[Controller] Stop confirmed. Ending story.")
-                self.stop_story_and_reset()
-        elif self.state == StoryBoxState.CONFIRM_STOP:
-            print("[Controller] Stop confirmed. Ending story.")
+        # Only relevant if we are in CONFIRM_STOP state (or maybe PLAYING if user holds it directly?)
+        # User said: "If long pressed (+5secs) in the CONFIRM STOP state : stop_story_and_reset."
+        if self.state == StoryBoxState.CONFIRM_STOP:
             self.stop_story_and_reset()
         else:
-            self._play_system_prompt("system", "stop_button_explain")
-
-            print("[Controller] Stop button ignored in this state.")
+            print("[Controller] Long press ignored in this state.")
 
     # ---------- logique métier ----------
 
@@ -470,7 +461,7 @@ def main():
     network_monitor = None
     rfid_manager = None
     rotary = None
-    stop_button = None
+    play_pause_button = None
     selector = None
     api_client = StoryApiClient()
 
@@ -513,10 +504,12 @@ def main():
             on_rotate=controller.on_rotary_rotate
         )
 
-        # Bouton stop sur GPIO 23
-        stop_button = StopButton(
+        # Bouton Play/Pause sur GPIO 23 (Anciennement StopButton)
+        play_pause_button = PlayPauseButton(
             pin=23,
-            on_press=controller.on_stop_button
+            on_short_press=controller.on_play_pause_click,
+            on_long_press=controller.on_play_pause_long_press,
+            long_press_duration=5.0
         )
 
         # Sélecteur 3 positions sur GPIO 24 / 25
@@ -530,7 +523,7 @@ def main():
         # Démarrage des threads hardware
         rfid_manager.start()
         rotary.start()
-        stop_button.start()
+        play_pause_button.start()
         selector.start()
 
         skip_states = {
@@ -564,8 +557,8 @@ def main():
             rfid_manager.stop()
         if rotary:
             rotary.stop()
-        if stop_button:
-            stop_button.stop()
+        if play_pause_button:
+            play_pause_button.stop()
         if selector:
             selector.stop()
 

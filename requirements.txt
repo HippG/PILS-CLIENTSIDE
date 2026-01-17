@@ -1,0 +1,11 @@
+# Hardware Interaction
+RPi.GPIO
+spidev
+mfrc522
+adafruit-circuitpython-neopixel
+rpi_ws281x
+adafruit-blinka
+# Audio & Media
+pygame
+# Networking / API
+requests
