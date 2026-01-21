@@ -1,0 +1,28 @@
+sudo cp -r comitup_templates/templates /usr/share/comitup/web/templates
+sudo chown -R comitup:comitup /usr/share/comitup/web/templates
+
+Changer le nom dans 
+/etc/comitup.conf
+
+sudo apt update
+sudo apt install -y \
+    git \
+    python3-pip \
+    python3-venv \
+    python3-dev \
+    python3-rpi.gpio \
+    python3-spidev \
+    i2c-tools \
+    libsdl2-mixer-2.0-0 \
+    python3-pygame
+
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+git clone https://github.com/waveshare/WM8960-Audio-HAT
+cd WM8960-Audio-HAT
+sudo ./install.sh
+sudo reboot
+
+sudo ./venv/bin/python architecture/main.py

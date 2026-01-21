@@ -58,7 +58,7 @@ linux_services/*.timer
 ####################################
 # Sécurité / local only
 ####################################
-todo.txt
+
 *.secret
 *.key
 
