@@ -1,0 +1,16 @@
+[Unit]
+Description=PILS ClientSide Service
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/home/comitup/PILS-CLIENTSIDE/architecture
+ExecStart=/home/comitup/PILS-CLIENTSIDE/venv/bin/python /home/comitup/PILS-CLIENTSIDE/architecture/main.py
+Restart=always
+RestartSec=5
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

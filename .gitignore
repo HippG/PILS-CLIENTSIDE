@@ -50,12 +50,6 @@ architecture/generated_stories/
 comitup_templates/__pycache__/
 
 ####################################
-# Services Linux déployés sur la machine
-####################################
-linux_services/*.service
-linux_services/*.timer
-
-####################################
 # Sécurité / local only
 ####################################
 
