@@ -233,3 +233,27 @@ class AudioPlayer:
             self._is_playing = False
             self._paused = False
             self._current_file = None
+
+    def play_raw_audio(self, filepath: str):
+        """
+        Play a raw audio file directly using pygame.mixer.music.
+        Does not sync LEDs or trigger callback when finished.
+        """
+        path = Path(filepath).expanduser().resolve()
+        if not path.is_file():
+            print(f"[AudioPlayer] ERROR: file not found for raw audio: {path}")
+            return
+
+        with self._lock:
+            self._stop_story_locked()
+
+            print(f"[AudioPlayer] Starting raw audio playback: {path}")
+            try:
+                pygame.mixer.music.load(str(path))
+                pygame.mixer.music.play(loops=0)
+                self._current_file = path
+                self._paused = False
+                self._is_playing = True
+                self._playback_token += 1
+            except Exception as exc:
+                print(f"[AudioPlayer] ERROR: failed to start raw audio: {exc}")

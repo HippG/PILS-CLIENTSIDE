@@ -10,3 +10,4 @@ class StoryBoxState(Enum):
     PLAYING_STORY = auto()
     PAUSED = auto()
     CONFIRM_STOP = auto()
+    DEMO = auto()

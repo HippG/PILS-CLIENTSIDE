@@ -160,6 +160,23 @@ class StoryApiClient:
         print(f"[StoryApiClient] Story saved to {story_target} with LEDs {leds_target}")
         return GeneratedStoryAssets(audio_path=story_target, led_pattern_path=leds_target)
 
+    def download_demo_catchphrase(self, figure_uuid: int, output_path: Path) -> bool:
+        url = f"{self.base_url}/demo-catchphrase/{figure_uuid}"
+        print(f"[StoryApiClient] GET {url}")
+        try:
+            response = requests.get(url, timeout=15.0, stream=True)
+            response.raise_for_status()
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            with output_path.open("wb") as handle:
+                for chunk in response.iter_content(chunk_size=8192):
+                    if chunk:
+                        handle.write(chunk)
+            print(f"[StoryApiClient] Demo catchphrase saved to {output_path}")
+            return True
+        except Exception as exc:
+            print(f"[StoryApiClient] Failed to download demo catchphrase for {figure_uuid}: {exc}")
+            return False
+
     def _parse_color_payload(self, payload, tag_id: int) -> Optional[Tuple[int, int, int]]:
         if payload is None:
             return None

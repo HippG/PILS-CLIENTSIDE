@@ -82,6 +82,11 @@ class StoryBoxController:
             return
         print(f"[State] {self.state.name} → {new_state.name}")
         self.state = new_state
+        if hasattr(self, "play_pause_button") and self.play_pause_button:
+            if new_state == StoryBoxState.PREPARING_STORY:
+                self.play_pause_button.long_press_duration = 10.0
+            elif new_state == StoryBoxState.CONFIRM_STOP:
+                self.play_pause_button.long_press_duration = 5.0
 
     def _play_system_prompt(self, category: str, event_name: str) -> None:
         """Play a short prompt only if a story is not currently playing."""
@@ -93,6 +98,13 @@ class StoryBoxController:
     def attach_duration_selector(self, selector: DurationSelector):
         """Keep a reference to the selector so we can resync after resets."""
         self._duration_selector = selector
+
+    def attach_play_pause_button(self, button: PlayPauseButton):
+        self.play_pause_button = button
+        if self.state == StoryBoxState.PREPARING_STORY:
+            button.long_press_duration = 10.0
+        elif self.state == StoryBoxState.CONFIRM_STOP:
+            button.long_press_duration = 5.0
 
     def get_state(self) -> StoryBoxState:
         return self.state
@@ -155,6 +167,14 @@ class StoryBoxController:
         previous = self._reader_active_tags.get(reader_id)
         self._reader_active_tags[reader_id] = tag_id
 
+        if self.state == StoryBoxState.DEMO:
+            group_index = self._reader_to_group.get(reader_id)
+            if group_index is not None:
+                self.led_controller.set_group_color(group_index, (0, 0, 255))
+            if previous != tag_id:
+                self._handle_demo_tag_detected(tag_id)
+            return
+
         if self.state != StoryBoxState.PREPARING_STORY:
             print(
                 f"[Controller] Tag {tag_id} detected on {reader_id} while state={self.state.name}. "
@@ -185,6 +205,13 @@ class StoryBoxController:
             return
 
         self._reader_active_tags[reader_id] = None
+
+        if self.state == StoryBoxState.DEMO:
+            group_index = self._reader_to_group.get(reader_id)
+            if group_index is not None:
+                self.led_controller.clear_group_color(group_index)
+            print(f"[Controller] Tag {tag_id} removed from {reader_id} in DEMO mode.")
+            return
 
         if self.state != StoryBoxState.PREPARING_STORY:
             print(f"[Controller] Tag {tag_id} removed from {reader_id} while state={self.state.name}.")
@@ -257,6 +284,11 @@ class StoryBoxController:
 
     def on_play_pause_click(self):
         print(f"[Controller] Play/Pause button clicked in state={self.state.name}")
+        if self.state == StoryBoxState.DEMO:
+            self.led_controller.led_event(InstantFlashPattern, color=(255, 255, 255), duration=1.0)
+            print("[Controller] Play/Pause click in DEMO mode: flashing LEDs and doing nothing else.")
+            return
+
         self.led_controller.led_event(InstantFlashPattern, color=(255, 0, 0), duration=1.0)
 
         if self.state == StoryBoxState.PREPARING_STORY:
@@ -286,8 +318,33 @@ class StoryBoxController:
         # User said: "If long pressed (+5secs) in the CONFIRM STOP state : stop_story_and_reset."
         if self.state == StoryBoxState.CONFIRM_STOP:
             self.stop_story_and_reset()
+        elif self.state == StoryBoxState.PREPARING_STORY:
+            self.enter_demo_mode()
         else:
             print("[Controller] Long press ignored in this state.")
+
+    def enter_demo_mode(self):
+        print("[Controller] Transitioning to DEMO mode.")
+        self._set_state(StoryBoxState.DEMO)
+        self.system_audio.stop()
+        self.led_controller.led_event(InstantFlashPattern, color=(255, 255, 255), duration=1.0)
+        
+        # Reset current colors and states for demo freshness
+        for reader_id, group_index in self._reader_to_group.items():
+            self.led_controller.clear_group_color(group_index)
+            self._reader_active_tags[reader_id] = None
+
+    def _handle_demo_tag_detected(self, tag_id: int):
+        def run():
+            temp_audio_path = self._generated_story_dir / f"demo_catchphrase_{tag_id}.mp3"
+            success = self.api_client.download_demo_catchphrase(tag_id, temp_audio_path)
+            if success:
+                print(f"[Controller] Playing demo catchphrase for tag {tag_id}")
+                self.audio_player.play_raw_audio(str(temp_audio_path))
+            else:
+                print(f"[Controller] Failed to play demo catchphrase for tag {tag_id}")
+
+        threading.Thread(target=run, daemon=True).start()
 
     # ---------- logique métier ----------
 
@@ -511,6 +568,7 @@ def main():
             on_long_press=controller.on_play_pause_long_press,
             long_press_duration=5.0
         )
+        controller.attach_play_pause_button(play_pause_button)
 
         # Sélecteur 3 positions sur GPIO 24 / 25
         selector = DurationSelector(
