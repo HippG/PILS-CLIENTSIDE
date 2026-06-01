@@ -23,7 +23,7 @@ class GeneratedStoryAssets:
 class StoryApiClient:
     """Simple wrapper around the local story API."""
 
-    def __init__(self, base_url: str = "http://13.38.48.162:8000", timeout: float = 300.0):
+    def __init__(self, base_url: str = "http://35.180.34.78:8000", timeout: float = 300.0):
         self.base_url = base_url.rstrip("/")
         self.timeout = timeout
 
@@ -71,7 +71,7 @@ class StoryApiClient:
         payload = {
             "duration": duration,
             "figure_rfid_uids": figure_rfid_uids,
-            "milo_id":1,
+            "milo_id":2,
         }
 
         print("[API] POST", url)
